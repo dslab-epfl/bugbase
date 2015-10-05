@@ -1,0 +1,27 @@
+--- memcached-1.4.4/memcached.c	2009-11-27 06:45:13.000000000 +0100
++++ memcached-1.4.4-new/memcached.c	2015-03-16 11:33:43.926799242 +0100
+@@ -249,6 +249,7 @@
+ static int freecurr;
+ /* Lock for connection freelist */
+ static pthread_mutex_t conn_lock = PTHREAD_MUTEX_INITIALIZER;
++static pthread_mutex_t my_lock  = PTHREAD_MUTEX_INITIALIZER;
+ 
+ 
+ static void conn_init(void) {
+@@ -2793,7 +2794,7 @@
+         out_string(c, "NOT_FOUND");
+         return;
+     }
+-
++    pthread_mutex_lock(&my_lock);
+     switch(add_delta(c, it, incr, delta, temp)) {
+     case OK:
+         out_string(c, temp);
+@@ -2805,6 +2806,7 @@
+         out_string(c, "SERVER_ERROR out of memory");
+         break;
+     }
++    pthread_mutex_unlock(&my_lock);
+     item_remove(it);         /* release our reference */
+ }
+ 

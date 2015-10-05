@@ -1,0 +1,11 @@
+--- httpd-2.0.48/srclib/apr-util/include/apr_optional_hooks.h	2003-01-01 01:02:20.000000000 +0100
++++ httpd-2.0.48.new/srclib/apr-util/include/apr_optional_hooks.h	2014-09-28 16:37:11.134775051 +0200
+@@ -100,7 +100,7 @@
+  */
+ 
+ #define APR_OPTIONAL_HOOK(ns,name,pfn,aszPre,aszSucc,nOrder) \
+-    ((void (APR_THREAD_FUNC *)(const char *,ns##_HOOK_##name##_t *,const char * const *, \
++	((void (APR_THREAD_FUNC *)(const char *, void (*)(void),const char * const *, \
+ 	       const char * const *,int))&apr_optional_hook_add)(#name,pfn,aszPre, \
+ 							   aszSucc, nOrder)
+ 

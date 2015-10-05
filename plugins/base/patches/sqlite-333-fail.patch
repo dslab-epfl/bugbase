@@ -1,0 +1,28 @@
+--- sqlite-3.3.3-old/src/os_unix.c	2006-01-30 15:34:20.000000000 +0100
++++ sqlite-3.3.3-new/src/os_unix.c	2015-03-05 16:30:53.442747294 +0100
+@@ -12,6 +12,8 @@
+ **
+ ** This file contains code that is specific to Unix systems.
+ */
++#include <unistd.h>
++#include <linux/unistd.h>
+ #include "sqliteInt.h"
+ #include "os.h"
+ #if OS_UNIX              /* This file is used on unix only */
+@@ -1675,6 +1677,8 @@
+ **
+ ** As of version 3.3.2, this mutex must be recursive.
+ */
++inline int gettid() { return syscall(__NR_gettid);}
++
+ void sqlite3UnixEnterMutex(){
+ #ifdef SQLITE_UNIX_THREADS
+   pthread_mutex_lock(&mutex1);
+@@ -1684,6 +1688,7 @@
+   }
+   pthread_mutex_unlock(&mutex1);
+ #endif
++  usleep(1000);
+   inMutex++;
+ }
+ void sqlite3UnixLeaveMutex(){

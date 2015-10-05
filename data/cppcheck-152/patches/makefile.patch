@@ -1,0 +1,21 @@
+--- cppcheck-1.52/Makefile	2011-12-10 13:00:45.000000000 +0100
++++ cppcheck-1.52-new/Makefile	2015-08-06 14:16:29.066386750 +0200
+@@ -5,9 +5,7 @@
+     HAVE_RULES=no
+ endif
+ 
+-ifndef CXXFLAGS
+-    CXXFLAGS=-O2 -DNDEBUG -Wall
+-endif
++CXXFLAGS+=-O2 -DNDEBUG -Wall
+ 
+ ifeq ($(HAVE_RULES),yes)
+     CXXFLAGS += -DHAVE_RULES $(shell pcre-config --cflags)
+@@ -141,7 +139,7 @@
+ ###### Targets
+ 
+ cppcheck: $(LIBOBJ) $(CLIOBJ) $(EXTOBJ)
+-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o cppcheck $(CLIOBJ) $(LIBOBJ) $(EXTOBJ) $(LIBS)
++	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o cppcheck $(CLIOBJ) $(LIBOBJ) $(EXTOBJ) $(LIBS) -lstdc++ -lm
+ 
+ all:	cppcheck testrunner

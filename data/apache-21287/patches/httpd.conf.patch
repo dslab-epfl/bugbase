@@ -1,0 +1,53 @@
+--- apache-21287/conf/httpd.conf	2014-09-28 18:38:25.563323100 +0200
++++ apache-21287-new/conf/httpd.conf	2014-09-28 18:41:16.589173014 +0200
+@@ -133,9 +133,9 @@
+ <IfModule worker.c>
+ StartServers         2
+ MaxClients         150
+-MinSpareThreads     25
+-MaxSpareThreads     75 
+-ThreadsPerChild     25
++MinSpareThreads      5
++MaxSpareThreads      5 
++ThreadsPerChild     10
+ MaxRequestsPerChild  0
+ </IfModule>
+ 
+@@ -264,7 +264,7 @@
+ #  don't use Group #-1 on these systems!
+ #
+ User nobody
+-Group #-1
++Group nogroup
+ </IfModule>
+ </IfModule>
+ 
+@@ -835,6 +835,9 @@
+ # AddType allows you to add to or override the MIME configuration
+ # file mime.types for specific file types.
+ #
++AddType application/x-httpd-php .php .phtml
++AddType application/x-httpd-php-source .phps
++
+ #AddType application/x-tar .tgz
+ #
+ # AddEncoding allows you to have certain browsers uncompress
+@@ -1046,3 +1049,18 @@
+ #    ErrorLog logs/dummy-host.example.com-error_log
+ #    CustomLog logs/dummy-host.example.com-access_log common
+ #</VirtualHost>
++
++<IfModule mod_cache.c>
++  <IfModule mod_mem_cache.c>
++  CacheEnable mem /
++  CacheDefaultExpire 1000
++  CacheMaxExpire 3000
++  CacheIgnoreCacheControl Off
++  CacheIgnoreNoLastMod    On
++  MCacheSize  2000
++  MCacheMaxObjectCount 50
++  MCacheMinObjectSize  1
++  MCacheMaxObjectSize  1048576
++  </IfModule>
++</IfModule>
++

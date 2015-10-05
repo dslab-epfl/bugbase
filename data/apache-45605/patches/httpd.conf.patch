@@ -1,0 +1,11 @@
+--- apache-45605/conf/httpd.conf	2014-11-10 01:09:29.822509555 +0100
++++ apache-45605-new/conf/httpd.conf	2014-11-10 01:12:48.650512269 +0100
+@@ -367,7 +367,7 @@
+ # necessary.
+ 
+ # Server-pool management (MPM specific)
+-#Include conf/extra/httpd-mpm.conf
++Include conf/extra/httpd-mpm.conf
+ 
+ # Multi-language error messages
+ #Include conf/extra/httpd-multilang-errordoc.conf

@@ -1,0 +1,46 @@
+--- apache-25520/conf/httpd.conf	2015-02-09 18:26:16.121061516 +0100
++++ apache-25520-new/conf/httpd.conf	2015-02-09 18:26:34.349061189 +0100
+@@ -78,7 +78,7 @@
+ # identification number when it starts.
+ #
+ <IfModule !mpm_netware.c>
+-PidFile logs/httpd.pid
++PidFile /tmp/httpd.pid
+ </IfModule>
+ 
+ #
+@@ -131,12 +131,14 @@
+ # ThreadsPerChild: constant number of worker threads in each server process
+ # MaxRequestsPerChild: maximum number of requests a server process serves
+ <IfModule worker.c>
+-StartServers         2
+-MaxClients         150
+-MinSpareThreads     25
+-MaxSpareThreads     75 
+-ThreadsPerChild     25
++StartServers         1
++MaxClients           2
++MinSpareThreads      2
++MaxSpareThreads      2 
++ThreadsPerChild      2
+ MaxRequestsPerChild  0
++ServerLimit	     1
++ThreadLimit	     2
+ </IfModule>
+ 
+ # perchild MPM
+@@ -264,7 +266,7 @@
+ #  don't use Group #-1 on these systems!
+ #
+ User nobody
+-Group #-1
++Group nogroup
+ </IfModule>
+ </IfModule>
+ 
+@@ -1046,3 +1048,5 @@
+ #    ErrorLog logs/dummy-host.example.com-error_log
+ #    CustomLog logs/dummy-host.example.com-access_log common
+ #</VirtualHost>
++
++BufferedLogs on

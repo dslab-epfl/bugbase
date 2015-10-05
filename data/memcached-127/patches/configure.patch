@@ -1,0 +1,11 @@
+--- memcached-1.4.4-old/configure	2009-11-27 07:34:57.000000000 +0100
++++ memcached-1.4.4-new/configure	2015-02-26 15:26:04.276540029 +0100
+@@ -7819,7 +7819,7 @@
+ elif test "$GCC" = "yes"
+ then
+   GCC_VERSION=`$CC -dumpversion`
+-  CFLAGS="$CFLAGS -Wall -Werror -pedantic -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls"
++  CFLAGS="$CFLAGS -Wall -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls"
+   case $GCC_VERSION in
+     4.4.*)
+     CFLAGS="$CFLAGS -fno-strict-aliasing"

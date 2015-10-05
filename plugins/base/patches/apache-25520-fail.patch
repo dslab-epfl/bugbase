@@ -1,0 +1,43 @@
+--- httpd-2.0.48/modules/loggers/mod_log_config.c	2003-09-21 23:23:34.000000000 +0200
++++ httpd-2.0.48-new/modules/loggers/mod_log_config.c	2014-11-09 23:19:42.282419626 +0100
+@@ -1324,6 +1324,13 @@
+     else
+         return NULL;
+ }
++enum very_special_state{
++	INSIDE,
++	OUTSIDE
++};
++
++static enum very_special_state state = OUTSIDE;
++
+ static apr_status_t ap_buffered_log_writer(request_rec *r,
+                                            void *handle, 
+                                            const char **strs,
+@@ -1355,11 +1362,23 @@
+         
+     }
+     else {
+-        for (i = 0, s = &buf->outbuf[buf->outcnt]; i < nelts; ++i) {
+-            memcpy(s, strs[i], strl[i]);
+-            s += strl[i];
++		//HERE I MODIFY
++        int idx;
++			if (state == INSIDE) {
++				raise(SIGSEGV);
++			}
++			state = INSIDE;
++        for (i = 0; i < nelts; ++i) {
++                idx = buf->outcnt;
++                s = &buf->outbuf[idx];
++                memcpy(s, strs[i], strl[i]);
++                s += strl[i];
+         }
+         buf->outcnt += len;
++        if (state == OUTSIDE) {
++			raise(SIGSEGV);
++		}
++		state = OUTSIDE;
+         rv = APR_SUCCESS;
+     }
+     return rv;

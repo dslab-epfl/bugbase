@@ -1,0 +1,21 @@
+--- apache-45605/conf/extra/httpd-mpm.conf	2014-11-10 01:09:30.474509564 +0100
++++ apache-45605-new/conf/extra/httpd-mpm.conf	2014-11-10 01:14:16.190513464 +0100
+@@ -49,12 +49,13 @@
+ # ThreadsPerChild: constant number of worker threads in each server process
+ # MaxRequestsPerChild: maximum number of requests a server process serves
+ <IfModule mpm_worker_module>
+-    StartServers          2
+-    MaxClients          150
+-    MinSpareThreads      25
+-    MaxSpareThreads      75 
+-    ThreadsPerChild      25
++    StartServers          1
++    MaxClients            3
++    MinSpareThreads       1
++    MaxSpareThreads       3 
++    ThreadsPerChild       3
+     MaxRequestsPerChild   0
++    ServerLimit           1
+ </IfModule>
+ 
+ # BeOS MPM

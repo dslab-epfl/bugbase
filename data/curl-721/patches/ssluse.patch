@@ -1,0 +1,15 @@
+--- curl-7.21.1/lib/ssluse.c	2010-08-01 23:38:14.000000000 +0200
++++ curl-7.21.1-patched/lib/ssluse.c	2015-02-09 17:50:58.953665897 +0100
+@@ -1454,10 +1454,10 @@
+     req_method = TLSv1_client_method();
+     use_sni(TRUE);
+     break;
+-  case CURL_SSLVERSION_SSLv2:
++    /*  case CURL_SSLVERSION_SSLv2:
+     req_method = SSLv2_client_method();
+     use_sni(FALSE);
+-    break;
++    break; */
+   case CURL_SSLVERSION_SSLv3:
+     req_method = SSLv3_client_method();
+     use_sni(FALSE);

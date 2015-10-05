@@ -1,0 +1,22 @@
+###########################################################
+## This file contains all necessary modules for bugbase  ##
+###########################################################
+
+#############
+## global  ##
+#############
+rainbow_logging_handler
+requests
+
+#############
+## specific #
+#############
+
+#httrack
+selenium
+
+#memcached
+python3-memcached
+
+#apache 25520
+psutil

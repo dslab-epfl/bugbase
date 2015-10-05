@@ -1,0 +1,32 @@
+--- pbzip2-0.9.4-old/Makefile	2005-08-30 17:30:11.000000000 +0200
++++ pbzip2-0.9.4-new/Makefile	2015-02-10 16:25:31.872536928 +0100
+@@ -1,26 +1,20 @@
+ # Make file for parallel BZIP2
+ SHELL=/bin/sh
+ 
+-# Compiler to use
+-CC=g++
+-
+-# Where you want pbzip2 installed when you do 'make install'
+-PREFIX=/usr
+-
+ all: pbzip2
+ 
+ # Standard pbzip2 compile
+ pbzip2: pbzip2.cpp
+-	$(CC) -O3 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -o pbzip2 pbzip2.cpp -pthread -lpthread -lbz2
++	$(CXX) $(CXXFLAGS) -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -o pbzip2 pbzip2.cpp -pthread -lpthread -lbz2 -lstdc++
+ 
+ # Choose this if you want to compile in a static version of the libbz2 library
+ pbzip2-static: libbz2.a pbzip2.cpp
+-	$(CC) -O3 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -o pbzip2 pbzip2.cpp -pthread -lpthread -I. -L. -lbz2
++	$(CXX) $(CXXFLAGS) -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -o pbzip2 pbzip2.cpp -pthread -lpthread -I. -L. -lbz -lstdc++
+ 
+ # Compatability mode for 32bit file sizes (less than 2GB) and systems
+ # that have compilers that treat int as 64bit natively (ie: modern AIX)
+ pbzip2-compat: pbzip2.cpp
+-	$(CC) -O3 -o pbzip2 pbzip2.cpp -pthread -lpthread -lbz2
++	$(CXX) $(CXXFLAGS) -o pbzip2 pbzip2.cpp -pthread -lpthread -lbz2 -lstdc++
+ 
+ # Install the binary pbzip2 program and man page
+ install: pbzip2

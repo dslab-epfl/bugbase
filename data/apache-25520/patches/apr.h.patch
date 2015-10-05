@@ -1,0 +1,11 @@
+--- httpd-2.0.48/srclib/apr/include/apr.h	2014-09-28 16:21:09.790860781 +0200
++++ httpd-2.0.48.new/srclib/apr/include/apr.h	2014-09-28 16:30:12.364039712 +0200
+@@ -241,7 +241,7 @@
+ #define APR_HAVE_MEMCHR         1
+ #define APR_HAVE_STRUCT_RLIMIT  1
+ #define APR_HAVE_UNION_SEMUN    0
+-#define APR_HAVE_SCTP           1
++#define APR_HAVE_SCTP           0
+ 
+ /*  APR Feature Macros */
+ #define APR_HAS_SHARED_MEMORY     1
