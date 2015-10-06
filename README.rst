@@ -6,7 +6,7 @@ What is Bugbase ?
 
 Bugbase is a framework for evaluating bug detection and root cause diagnosis tools.
 
-It was developed as part of an Intel-EPFL collaboration in the context of the [Failure Sketching](http://dslab.epfl.ch/pubs/gist.pdf) work.
+It was developed as part of an Intel-EPFL collaboration in the context of our `Failure Sketching <http://dslab.epfl.ch/pubs/gist.pdf>`_ work.
 
 
 How can Bugbase help me ?
@@ -39,7 +39,7 @@ You can also edit `conf/custom.conf` . Details are explained in the complete doc
 Preparing benchmarks
 ^^^^^^^^^^^^^^^^^^^^
 
-Once you have configured Bugbase, you need to install the programs to run your experiments on ::
+Once you configure Bugbase, you need to install the programs to run your experiments on ::
 
     $ ./install.py ${program_names or all} #(see ./install.py --help for more information)
 
@@ -73,4 +73,4 @@ And then you can build the documentation by ::
 
     $ cd ${bugbase_root}/doc; make {html,pdf, etc}
 
-This will generate the Bugbase documentation in your the preferred format.
+This will generate the Bugbase documentation in your preferred format.
