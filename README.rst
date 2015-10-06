@@ -4,50 +4,42 @@ Bugbase : reliable experiments
 What is Bugbase ?
 -----------------
 
-Bugbase is a framework for benchmarking instrumentation tools on programs.
+Bugbase is a framework for evaluating bug detection and root cause diagnosis tools.
 
-It was developed as part of an Intel-EPFL collaboration around concurrency bugs, thus the current strong focus of
-Bugbase concerning concurrency bugs.
+It was developed as part of an Intel-EPFL collaboration in the context of the [Failure Sketching](http://dslab.epfl.ch/pubs/gist.pdf) work.
 
 
-Why should I use Bugbase ?
+How can Bugbase help me ?
 --------------------------
 
-When you have to run multiple kinds of instrumentation on the same program, need to benchmark each one, and repeat this for a dozen of programs, the process quickly becomes cumbersome.
-
-Bugbase was developed to remove this burden from the developer and allows running and repeating these tests easily.
-
-Did you write a paper and a third party has doubts about the meaningfulness of your data and you need to re-test everything again and you can't reproduce your data ? Or someone simply asked you your protocol to reproduce it themselves and you end up having to configure everything for them ?
-
-Bugbase allows you to avoid that, streamlining the whole process and allowing your experiments to be reproduced easily
-
+If you have a bug detection/classification/root cause diagnosis tool to evaluate, bugbase allows you to do that with a simple plugin architecture.
 
 Using Bugbase
 -------------
 
-This is a quick introductory guide on how to use Bugbase. If you want to have more information, please see `complete documentation`_.
+This is a quick introductory guide on how to use Bugbase. If you want more information, please see the `complete documentation`_.
 
 Getting the sources
 ^^^^^^^^^^^^^^^^^^^
 
-Installing Bugbase from `Github <https://github.com/dslab-epfl/bugbase>`_ using git with ::
+Install Bugbase from `Github <https://github.com/dslab-epfl/bugbase>`_ using git with ::
 
     $ git clone git@github.com:dslab-epfl/bugbase
 
-Configure Bugbase
+Configuring Bugbase
 ^^^^^^^^^^^^^^^^^
 
-Bugbase provides a script `configure.py` that will provide you an automated way of installing various plugins and configure Bugbase to work the way you want ::
+Bugbase has a `configure.py` script that will automatically install various plugins and configure Bugbase to work the way you want ::
 
     $ ./configure.py
 
 
-You can also, for more precise configuration edit `conf/custom.conf` which details are explained in the complete documentation (see `complete documentation`_)
+You can also edit `conf/custom.conf` . Details are explained in the complete documentation (see `complete documentation`_)
 
 Preparing benchmarks
 ^^^^^^^^^^^^^^^^^^^^
 
-Once you have configured Bugbase, you need to install programs to run your experiments on ::
+Once you have configured Bugbase, you need to install the programs to run your experiments on ::
 
     $ ./install.py ${program_names or all} #(see ./install.py --help for more information)
 
@@ -55,7 +47,7 @@ Once you have configured Bugbase, you need to install programs to run your exper
 Running experiments
 -------------------
 
-Running experiments can be launched through the `run.py` executable ::
+Experiments can be launched with `run.py` ::
 
     $ ./run.py <plugin> <program_name>
 
@@ -73,14 +65,12 @@ For more information, please see ::
 Building documentation
 ----------------------
 
-As this README is not sufficient to show all of Bugbase features and interest, a complete documentation is shipped with it.
-
-The documentation is built using Sphinx, which you can install by running ::
+You can obtain the complete documentation by ::
 
     $ sudo apt-get install python3-sphinx
 
-And then you can build the documentation like ::
+And then you can build the documentation by ::
 
     $ cd ${bugbase_root}/doc; make {html,pdf, etc}
 
-This will generate Bugbase documentation in your preferred format.
+This will generate the Bugbase documentation in your the preferred format.
